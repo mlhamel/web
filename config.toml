@@ -1,0 +1,29 @@
+# The URL the site will be built for
+base_url = "https://mlhamel.github.io/web"
+
+# The site title and description
+title = "mlhamel"
+description = "Personal website of mlhamel"
+
+# The default language
+default_language = "en"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+# Whether to generate a feed file
+generate_feed = true
+feed_filename = "atom.xml"
+
+[markdown]
+# Whether to do syntax highlighting
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+
+[extra]
+# Put your custom variables here
+author = "mlhamel"
+github = "https://github.com/mlhamel"

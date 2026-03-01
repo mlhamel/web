@@ -1,3 +1,10 @@
++++
+title = "Playing with units and measurements in Python"
+date = 2025-10-29
+[taxonomies]
+tags = ["general"]
++++
+
 <!--
 Dependencies:
 requires-python = ">=3.9"
@@ -8,13 +15,6 @@ dependencies = [
     "unyt"
 ]
 -->
-
-+++
-title = "Playing with units and measurements in Python"
-date = 2025-10-29
-[taxonomies]
-tags = ["general"]
-+++
 
 When working on data processing and scientific computing tasks, it's often necessary to handle measurements with associated units. This ensures that calculations are performed correctly and that results are meaningful. Python is widly used for such tasks, and there are several libraries available to help manage units and measurements effectively.
 
@@ -99,3 +99,37 @@ print(f"Speed in km/h: {speed_kmh}")
 ```
 
 ## Unyt
+
+Unyt is a library focused on array-based unit handling with strong astrophysics support. It's designed to work seamlessly with NumPy arrays and provides efficient unit operations.
+
+Here's an example of how to use Unyt:
+
+```python
+import unyt
+import numpy as np
+# Define some quantities with units
+length = 5 * unyt.meter
+time = 10 * unyt.second
+# Calculate speed
+speed = length / time
+print(f"Speed: {speed.to(unyt.meter / unyt.second)}")
+# Convert speed to kilometers per hour
+speed_kmh = speed.to(unyt.kilometer / unyt.hour)
+print(f"Speed in km/h: {speed_kmh}")
+# Working with arrays
+distances = np.array([1, 2, 3, 4, 5]) * unyt.kilometer
+times = np.array([0.5, 1.0, 1.5, 2.0, 2.5]) * unyt.hour
+speeds = distances / times
+print(f"Array of speeds: {speeds}")
+```
+
+## Conclusion
+
+Each of these libraries has its strengths:
+
+- **Pint** is great for general-purpose unit handling with a gentle learning curve
+- **Quantities** excels when you need native NumPy integration for scientific computing
+- **Astropy** is the go-to choice for astronomical calculations with comprehensive unit support
+- **Unyt** provides highly optimized array operations with a focus on astrophysics
+
+Choose the one that best fits your specific use case and requirements. For most general applications, Pint provides an excellent balance of features and ease of use, while specialized fields might benefit from the more targeted approaches of the other libraries.

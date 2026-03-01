@@ -1,0 +1,4 @@
+themes/
+public/
+.venv/
+node_modules/

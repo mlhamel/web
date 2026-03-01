@@ -11,7 +11,7 @@ I'm passionate about **automation**, **open source**, and the potential of techn
 
 I lead a team of talented developers working on the calculation engine that powers Metrio's platform. Our goal is to help organizations measure and report their environmental impact accurately and efficiently.
 
-Our stack primarily consists of **Python** and **Go**, leveraging the strengths of both languages to deliver high-performance applications. We utilize modern development practices, including CI/CD pipelines, automated testing, and containerization to ensure reliability and scalability. 
+Our stack primarily consists of **Python** and **Go**, leveraging the strengths of both languages to deliver high-performance applications. We utilize modern development practices, including CI/CD pipelines, automated testing, and containerization to ensure reliability and scalability.
 
 We are using **Docker** for containerization, **Kubernetes** for orchestration, and various **Google Cloud** services to build a robust and scalable infrastructure.
 
@@ -21,7 +21,7 @@ I'm deeply interested in tooling around linters and static analysis to maintain 
 
 ### Data & Sustainability
 
-Data engineering and sustainability are two areas that deeply interest me. I believe that technology can play a crucial role in addressing environmental challenges, and I'm excited to be part of a team that is making a positive impact in this space. 
+Data engineering and sustainability are two areas that deeply interest me. I believe that technology can play a crucial role in addressing environmental challenges, and I'm excited to be part of a team that is making a positive impact in this space.
 
 For processing large datasets, we utilize computing frameworks and cloud-based data storage solutions to handle the scale and complexity of sustainability data. Especially when dealing with ESG metrics, we ensure data integrity and accuracy through rigorous validation processes using different data processing pipelines and ETL tools. Both **Pandas** and **Polars** are heavily used in our data processing workflows.
 

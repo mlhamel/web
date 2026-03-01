@@ -6,17 +6,37 @@ A personal website built with [Zola](https://www.getzola.org/), a fast static si
 
 - Git
 - Zola
+- Rust/Cargo (for prek)
+- Node.js/npm (for prettier)
+- Python 3.9+ and uv
 
-## Setup
+## Quick Setup
+
+For complete development environment setup:
+
+```bash
+make dev-setup
+```
+
+This will:
+
+- Install Zola
+- Set up Python dependencies with uv
+- Install prek and pre-commit hooks
+- Set up linting and formatting tools
+
+## Manual Setup
 
 ### Install Zola
 
 **Debian/Ubuntu:**
+
 ```bash
 ./scripts/install-zola.sh
 ```
 
 **Or manually:**
+
 ```bash
 # Download latest release
 curl -sL https://github.com/getzola/zola/releases/download/v0.19.2/zola-v0.19.2-x86_64-unknown-linux-gnu.tar.gz | tar xz
@@ -42,14 +62,28 @@ zola build
 
 Site will be available at http://127.0.0.1:1111
 
+## Development Commands
+
+```bash
+# Start development server
+make serve
+
+# Run tests
+make test
+
+# Run linters
+make lint
+
+# Format code
+make format
+
+# Create new blog post
+make post SLUG=my-post-title
+```
+
 ## Python utilities
 
 Lightweight Python tooling lives in `scripts/` and is managed by [uv](https://uv.langchain.dev/).
-To prepare the environment:
-
-```bash
-uv sync --no-install-project
-```
 
 The Markdown runner can execute code blocks with automatic dependency install:
 
@@ -57,11 +91,11 @@ The Markdown runner can execute code blocks with automatic dependency install:
 uv run scripts/run_md_blocks.py content/blog/first-post/index.md
 ```
 
-
 ## Deploy to GitHub Pages
 
 1. Create a repository named `mlhamel.github.io` or use a project repository
 2. Push your code:
+
 ```bash
 git add .
 git commit -m "Initial commit"

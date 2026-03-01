@@ -21,7 +21,7 @@ headings, lists, and more.
 
 **Open sections by default**:
 
-<details open> 
+<details open>
 <summary>Click to close</summary>
 
 This is an open section.
@@ -99,7 +99,9 @@ Example of 3-level nested ordered lists:
 
 1. a
 2. First sublist:
+
    1. One (with additional sublist)
+
       1. Another
       2. ordered
       3. sublist.
@@ -116,6 +118,7 @@ Example of 3-level nested ordered lists:
 Example of 3-level nested unordered lists:
 
 - a
+
   - b
   - c
 

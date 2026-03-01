@@ -63,8 +63,7 @@ site demo [here](https://micahkepe.com/radion/).
 
 ## Installation
 
-> [!IMPORTANT]
-> **Requires Zola >= 0.22.** For older Zola versions (0.20–0.21), use
+> [!IMPORTANT] > **Requires Zola >= 0.22.** For older Zola versions (0.20–0.21), use
 > [v1.0.0](https://github.com/micahkepe/radion/releases/tag/v1.0.0).
 
 First download this theme to your `themes` directory:
@@ -188,6 +187,7 @@ To change the default favicon:
 
 1. Create your own favicon folder with the following site:
    [RealFaviconGenerator](https://realfavicongenerator.net/)
+
    - Set the 'Favicon path' option to `/icons/favicon/`
 
 2. Unzip the created folder

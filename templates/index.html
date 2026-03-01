@@ -12,7 +12,7 @@
     <article>
         <h1>{{ section.title }}</h1>
         {{ section.content | safe }}
-        
+
         <div class="blog-list">
             {% set pages = paginator.pages | default(value=section.pages) %}
             {% for page in pages %}

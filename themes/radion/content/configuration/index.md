@@ -1,7 +1,7 @@
 +++
 title = "Configuration Options"
 date = 2025-06-01
-draft = false 
+draft = false
 authors = ["Joe Schmoe", "Jane Doe", "John Smith"]
 
 [taxonomies]
@@ -144,6 +144,7 @@ To change the default favicon:
 
 1. Create your own favicon folder with the following site:
    [RealFaviconGenerator](https://realfavicongenerator.net/)
+
    - Set the 'Favicon path' option to `/icons/favicon/`
 
 2. Unzip the created folder

@@ -7,6 +7,7 @@ The script will look for a top HTML comment containing a `dependencies` list
 and will create a temporary Python file with a uv-style header so `uv run`
 installs requirements automatically before running.
 """
+
 import argparse
 import ast
 import os
@@ -48,16 +49,16 @@ def build_temp_script(md_path: str, comment_meta: dict, blocks: list[str]):
         if comment_meta.get("dependencies"):
             f.write("# /// script\n")
             req = comment_meta.get("requires-python", ">=3.9")
-            f.write(f"# requires-python = \"{req}\"\n")
+            f.write(f'# requires-python = "{req}"\n')
             f.write("# dependencies = [\n")
             for d in comment_meta.get("dependencies", []):
-                f.write(f"#     \"{d}\",\n")
+                f.write(f'#     "{d}",\n')
             f.write("# ]\n")
             f.write("# ///\n\n")
         # helpful comment
         f.write(f"# Generated from {md_path}\n\n")
         for i, b in enumerate(blocks):
-            f.write(f"# --- block {i+1} ---\n")
+            f.write(f"# --- block {i + 1} ---\n")
             f.write(b)
             f.write("\n\n")
     return temp_path
@@ -66,7 +67,9 @@ def build_temp_script(md_path: str, comment_meta: dict, blocks: list[str]):
 def run_with_uv(temp_path: str):
     # Use `uv run` so dependencies declared in the header are auto-installed
     cmd = ["uv", "run", "--no-project", temp_path]
-    proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    proc = subprocess.run(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
+    )
     return proc.returncode, proc.stdout
 
 
@@ -79,7 +82,7 @@ def main():
         print("File not found:", args.mdfile, file=sys.stderr)
         sys.exit(2)
 
-    text = open(args.mdfile, "r", encoding="utf-8").read()
+    text = open(args.mdfile, encoding="utf-8").read()
     meta = parse_top_comment(text)
     blocks = extract_py_blocks(text)
     if not blocks:

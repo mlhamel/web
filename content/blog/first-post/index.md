@@ -1,8 +1,11 @@
-<!-- 
+<!--
 Dependencies:
 requires-python = ">=3.9"
 dependencies = [
     "pint",
+    "quantities",
+    "astropy",
+    "unyt"
 ]
 -->
 
@@ -22,19 +25,19 @@ There's different librairies available in Python for handling units and measurem
 - **Astropy**: A library for astronomy that includes support for units and quantities.
 - **Unyt**: A library focused on array-based unit handling with strong astrophysics support.
 
-| Feature | Pint | Quantities | Astropy | Unyt |
-|---------|------|------------|---------|------|
-| Main Focus | General purpose unit handling | Scientific computing with NumPy integration | Astronomical calculations | Array-based calculations with astrophysics focus |
-| NumPy Integration | Yes | Native | Yes | Native |
-| Unit Definition | Flexible, user-definable | Fixed set | Comprehensive astronomical units | Extensible astronomy units |
-| Performance | Good | Very good | Optimized for astronomy | Highly optimized for arrays |
-| Learning Curve | Gentle | Moderate | Steeper | Moderate |
-| Installation | Lightweight | Requires NumPy | Large package with dependencies | Lightweight |
-| Array Operations | Supported | Native | Supported | Native |
-| Unit Conversion | Comprehensive | Basic | Comprehensive | Comprehensive |
-| Polars Integration | Limited | No | No | Experimental |
+| Feature            | Pint                          | Quantities                                  | Astropy                          | Unyt                                             |
+| ------------------ | ----------------------------- | ------------------------------------------- | -------------------------------- | ------------------------------------------------ |
+| Main Focus         | General purpose unit handling | Scientific computing with NumPy integration | Astronomical calculations        | Array-based calculations with astrophysics focus |
+| NumPy Integration  | Yes                           | Native                                      | Yes                              | Native                                           |
+| Unit Definition    | Flexible, user-definable      | Fixed set                                   | Comprehensive astronomical units | Extensible astronomy units                       |
+| Performance        | Good                          | Very good                                   | Optimized for astronomy          | Highly optimized for arrays                      |
+| Learning Curve     | Gentle                        | Moderate                                    | Steeper                          | Moderate                                         |
+| Installation       | Lightweight                   | Requires NumPy                              | Large package with dependencies  | Lightweight                                      |
+| Array Operations   | Supported                     | Native                                      | Supported                        | Native                                           |
+| Unit Conversion    | Comprehensive                 | Basic                                       | Comprehensive                    | Comprehensive                                    |
+| Polars Integration | Limited                       | No                                          | No                               | Experimental                                     |
 
-## Pint 
+## Pint
 
 Pint is a popular choice for handling units in Python due to its ease of use and flexibility. It allows you to define quantities with units, perform arithmetic operations, and convert between different units seamlessly.
 
@@ -59,6 +62,40 @@ print(f"Speed in km/h: {speed_kmh}")
 
 ## Quantities
 
+Using Quantities is another option for handling units in Python, especially if you're working with NumPy arrays. It allows you to perform operations on arrays while keeping track of the associated units.
+
+Here is an example of how to use Quantities:
+
+```python
+import quantities as pq
+import numpy as np
+# Define some quantities with units
+length = 5 * pq.meter
+time = 10 * pq.second
+# Calculate speed
+speed = length / time
+print(f"Speed: {speed}")
+# Convert speed to kilometers per hour
+speed_kmh = speed.rescale(pq.kilometer / pq.hour)
+print(f"Speed in km/h: {speed_kmh}")
+```
+
 ## Astropy
+
+Astropy is a powerful library for astronomy that includes support for units and quantities. It provides a comprehensive set of astronomical units and allows you to perform calculations with those units.
+Here's an example of how to use Astropy for unit handling:
+
+```python
+from astropy import units as u
+# Define some quantities with units
+length = 5 * u.meter
+time = 10 * u.second
+# Calculate speed
+speed = length / time
+print(f"Speed: {speed.to(u.meter / u.second)}")
+# Convert speed to kilometers per hour
+speed_kmh = speed.to(u.kilometer / u.hour)
+print(f"Speed in km/h: {speed_kmh}")
+```
 
 ## Unyt

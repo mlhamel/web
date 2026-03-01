@@ -1,7 +1,7 @@
 +++
-title = "LaTeX Example" 
+title = "LaTeX Example"
 date = 2017-09-24
-description = '''A demonstration of providing a description on a per-page basis. 
+description = '''A demonstration of providing a description on a per-page basis.
 This page is about using the LaTeX shortcodes provided by radion.'''
 
 [taxonomies]
@@ -73,7 +73,7 @@ $$
 N_{k+1} = N_{k} + N\_{k-1} + 1 \tag{def. of $N_h$}
 $$
 
-From the inductive hypothesis, $N_{k} \geq F_{k+2} - 1$ and $N_{k-1} \geq 
+From the inductive hypothesis, $N_{k} \geq F_{k+2} - 1$ and $N_{k-1} \geq
 F_{k+1} - 1$. Substituting:
 
 $$
@@ -92,7 +92,7 @@ $$
 N_{k+1} \geq F_{k+3} - 1
 $$
 
-By the principle of mathematical induction, the statement holds for all $h 
+By the principle of mathematical induction, the statement holds for all $h
 \geq 0$.
 
 ---

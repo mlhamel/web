@@ -158,7 +158,7 @@ article {
 }
 
 .blog-preview {
-    margin-bottom: 2.5rem;
+    margin-bottom: 4rem;
 
     h3 {
         margin-bottom: 0.5rem;
@@ -238,9 +238,9 @@ footer {
     margin-top: 0;
 }
 
-.latest-posts h2 {
-    margin-bottom: 2rem;
-    font-size: 2rem;
+.latest-posts h1 {
+    margin-bottom: 3.5rem;
+    font-size: 2.5rem;
 }
 
 .view-all {

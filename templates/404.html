@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% import "macros/index_macros.html" as index_macros %}
+
+{% block title %}404 | {{ config.title }}{% endblock title %}
+
+{% block content %}
+  {% block header %}
+    {{ index_macros::header(config=config) }}
+  {% endblock header %}
+
+  <main style="text-align: center;">
+    <article>
+      <h1>404 - Not Found</h1>
+      <p>The page you are looking for doesn't exist.</p>
+      <p><a href="{{ config.base_url | safe }}">Return to the homepage</a></p>
+    </article>
+  </main>
+
+  {% block footer %}
+    {% include "partials/footer.html" %}
+  {% endblock footer %}
+{% endblock content %}

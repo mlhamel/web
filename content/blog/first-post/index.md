@@ -1,22 +1,12 @@
 +++
 title = "Playing with units and measurements in Python"
 date = 2025-10-29
+description = "A comprehensive comparison of Python libraries for handling units and measurements: Pint, Quantities, Astropy, and Unyt. Learn which library fits your scientific computing needs."
 [taxonomies]
 tags = ["general"]
 +++
 
-<!--
-Dependencies:
-requires-python = ">=3.9"
-dependencies = [
-    "pint",
-    "quantities",
-    "astropy",
-    "unyt"
-]
--->
-
-When working on data processing and scientific computing tasks, it's often necessary to handle measurements with associated units. This ensures that calculations are performed correctly and that results are meaningful. Python is widly used for such tasks, and there are several libraries available to help manage units and measurements effectively.
+When working on data processing and scientific computing tasks
 
 There's different librairies available in Python for handling units and measurements. Some of the most popular ones include:
 
@@ -133,3 +123,14 @@ Each of these libraries has its strengths:
 - **Unyt** provides highly optimized array operations with a focus on astrophysics
 
 Choose the one that best fits your specific use case and requirements. For most general applications, Pint provides an excellent balance of features and ease of use, while specialized fields might benefit from the more targeted approaches of the other libraries.
+
+<!--
+Dependencies:
+requires-python = ">=3.9"
+dependencies = [
+    "pint",
+    "quantities",
+    "astropy",
+    "unyt"
+]
+-->

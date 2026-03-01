@@ -1,0 +1,19 @@
+[project]
+name = "web"
+version = "0.1.0"
+description = "Static site & utilities for mlhamel's blog"
+authors = [ { name="Matt Hamel", email="" } ]
+requires-python = ">=3.9"
+
+dependencies = [
+    "pint"
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

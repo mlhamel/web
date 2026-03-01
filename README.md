@@ -42,6 +42,22 @@ zola build
 
 Site will be available at http://127.0.0.1:1111
 
+## Python utilities
+
+Lightweight Python tooling lives in `scripts/` and is managed by [uv](https://uv.langchain.dev/).
+To prepare the environment:
+
+```bash
+uv sync --no-install-project
+```
+
+The Markdown runner can execute code blocks with automatic dependency install:
+
+```bash
+uv run scripts/run_md_blocks.py content/blog/first-post/index.md
+```
+
+
 ## Deploy to GitHub Pages
 
 1. Create a repository named `mlhamel.github.io` or use a project repository

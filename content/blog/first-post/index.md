@@ -1,3 +1,11 @@
+<!-- 
+Dependencies:
+requires-python = ">=3.9"
+dependencies = [
+    "pint",
+]
+-->
+
 +++
 title = "Playing with units and measurements in Python"
 date = 2025-10-29

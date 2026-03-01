@@ -36,4 +36,4 @@ For processing large datasets, we utilize computing frameworks and cloud-based d
 
 - **GitHub:** [@mlhamel](https://github.com/mlhamel)
 - **LinkedIn:** [mlhamel](https://www.linkedin.com/in/mlhamel/)
-- **Email:** marrakis@gmail.com
+- **Email:** [marrakis@gmail.com](mailto:marrakis@gmail.com)

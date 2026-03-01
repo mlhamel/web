@@ -14,10 +14,14 @@
     {% if config.generate_feeds %}
     <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path="atom.xml") | safe }}">
     {% endif %}
+
+    <script src="{{ get_url(path='js/init-theme.js', trailing_slash=false) | safe }}"></script>
 </head>
 
 <body>
     {% block content %}
     {% endblock content %}
+
+    <script src="{{ get_url(path='js/toggle-theme.js', trailing_slash=false) | safe }}"></script>
 </body>
 </html>

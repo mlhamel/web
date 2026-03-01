@@ -1,3 +1,13 @@
 <footer>
-    <p>&copy; {{ now() | date(format="%Y") }} {{ config.extra.author | default(value=config.title) }}. Built with <a href="https://www.getzola.org">Zola</a>.</p>
+    <div class="footer-content">
+        <p class="footer-title">Mathieu Leduc-Hamel's Latest Writing</p>
+        <div class="footer-links">
+            {% if config.extra.github %}
+            <a href="{{ config.extra.github }}" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                <img src="{{ get_url(path='icons/github.svg') }}" alt="GitHub" class="social-icon github-footer-icon">
+            </a>
+            {% endif %}
+        </div>
+        <p class="footer-copy">&copy; {{ now() | date(format="%Y") }} {{ config.extra.author | default(value=config.title) }}. Built with <a href="https://www.getzola.org">Zola</a>.</p>
+    </div>
 </footer>

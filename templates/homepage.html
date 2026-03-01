@@ -10,7 +10,7 @@
   <main>
     {% block main %}
     <section class="latest-posts">
-      <h1>Latest Blog Posts</h1>
+      <h1>Mathieu Leduc-Hamel's Latest Writing</h1>
       <div class="blog-list">
         {% set blog_section = get_section(path="blog/_index.md") %}
         {% for page in blog_section.pages | slice(end=10) %}

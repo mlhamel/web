@@ -5,8 +5,6 @@ date = 2025-10-29
 tags = ["general"]
 +++
 
-# Playing with units and measurements in Python
-
 When working on data processing and scientific computing tasks, it's often necessary to handle measurements with associated units. This ensures that calculations are performed correctly and that results are meaningful. Python is widly used for such tasks, and there are several libraries available to help manage units and measurements effectively.
 
 There's different librairies available in Python for handling units and measurements. Some of the most popular ones include:

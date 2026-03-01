@@ -1,10 +1,26 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
+{% import "macros/index_macros.html" as index_macros %}
+{% import "macros/post_macros.html" as post_macros %}
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
 
 {% block content %}
-<article>
-    <h1>{{ page.title }}</h1>
-    {{ page.content | safe }}
-</article>
-{% endblock %}
+  {% block header %}
+    {{ index_macros::header(config=config) }}
+  {% endblock header %}
+
+  <main>
+    <article>
+        <h1>{{ page.title }}</h1>
+        {% if page.date %}
+        <time>{{ page.date | date(format="%B %e, %Y") }}</time>
+        {% endif %}
+        
+        {{ page.content | safe }}
+    </article>
+  </main>
+
+  {% block footer %}
+    {% include "partials/footer.html" %}
+  {% endblock footer %}
+{% endblock content %}

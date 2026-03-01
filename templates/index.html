@@ -1,7 +1,45 @@
-{% extends "base.html" %}
+{% extends "_base.html" %}
+{% import "macros/index_macros.html" as index_macros %}
+{% import "macros/post_macros.html" as post_macros %}
 
 {% block content %}
-<div class="home">
-    {{ section.content | safe }}
-</div>
-{% endblock %}
+  {% block header %}
+    {{ index_macros::header(config=config) }}
+  {% endblock header %}
+
+  <main>
+    {% block main %}
+    <article>
+        <h1>{{ section.title }}</h1>
+        {{ section.content | safe }}
+        
+        <div class="blog-list">
+            {% set pages = paginator.pages | default(value=section.pages) %}
+            {% for page in pages %}
+            <div class="blog-preview">
+                <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+                <time>{{ page.date | date(format="%B %e, %Y") }}</time>
+                <p>{{ page.summary | default(value=page.content | striptags | truncate(length=160)) | safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if paginator %}
+        <nav class="pagination">
+            {% if paginator.previous %}
+            <a href="{{ paginator.previous }}">&laquo; Newer</a>
+            {% endif %}
+            <span>Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+            {% if paginator.next %}
+            <a href="{{ paginator.next }}">Older &raquo;</a>
+            {% endif %}
+        </nav>
+        {% endif %}
+    </article>
+    {% endblock main %}
+  </main>
+
+  {% block footer %}
+    {% include "partials/footer.html" %}
+  {% endblock footer %}
+{% endblock content %}

@@ -297,3 +297,34 @@ body.dark article th,
 body.dark article td {
     border-color: var(--border);
 }
+
+/* Code blocks styling with proper margin and padding */
+article pre {
+    margin: 1.25rem 0;
+    padding: 1.2rem 1rem 1rem 1rem !important;
+    border-radius: 6px;
+    background: var(--bg-secondary) !important;
+    overflow-x: auto;
+}
+
+/* Inline code styling */
+article code:not(pre code) {
+    background: var(--bg-secondary);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+}
+
+/* Dark mode code block adjustments */
+:root.dark article pre,
+body.dark article pre {
+    background: #1a1a1a !important;
+    border: 1px solid #333;
+}
+
+:root.dark article code:not(pre code),
+body.dark article code:not(pre code) {
+    background: #1a1a1a;
+    border-color: #333;
+}

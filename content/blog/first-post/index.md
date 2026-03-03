@@ -4,9 +4,26 @@ date = 2026-03-03
 description = "A comprehensive comparison of Python libraries for handling units and measurements: Pint, Quantities, Astropy, and Unyt. Learn which library fits your scientific computing needs."
 [taxonomies]
 tags = ["general"]
+[extra]
+toc = true
 +++
 
-When working on data processing and scientific computing tasks, it's often necessary to handle measurements with associated units. This ensures that calculations are performed correctly and that results are meaningful. Python is widly used for such tasks, and there are several libraries available to help manage units and measurements effectively.
+It's been a while i've worked with python's scientific librairies. When working on data processing and scientific computing tasks, it's often necessary to handle measurements with associated units. This ensures that calculations are performed correctly and that results are meaningful. Python is widly used for such tasks, and there are several libraries available to help manage units and measurements effectively.
+
+But i've been always treating the units as a side note and more something to be added at the end of the calculations, almost like an afterthought. I wanted to take a deeper look at the different librairies available and see how they can be used to handle units in a more integrated way.
+
+## Introduction
+
+I've decided to explore the different options available for handling units and measurements in Python.
+
+For me, the main criteria for choosing a library are:
+
+- Ease of use: The library should be intuitive and easy to integrate into existing codebases.
+- Flexibility: It should support a wide range of units and allow for custom unit definitions.
+- Performance: The library should be efficient, especially when working with large datasets or performing complex calculations.
+- Integration: It should work well with other scientific libraries like NumPy and Polars.
+
+## Implementations
 
 There's different librairies available in Python for handling units and measurements. Some of the most popular ones include:
 
@@ -27,11 +44,13 @@ There's different librairies available in Python for handling units and measurem
 | Unit Conversion    | Comprehensive                 | Basic                                       | Comprehensive                    | Comprehensive                                    |
 | Polars Integration | Limited                       | No                                          | No                               | Experimental                                     |
 
-## Pint
+Let's explore the different libraries in more detail and see how they can be used to handle units and measurements in Python.
 
-Pint is a popular choice for handling units in Python due to its ease of use and flexibility. It allows you to define quantities with units, perform arithmetic operations, and convert between different units seamlessly.
+### Pint
 
-### Example
+Pint is a popular choice for handling units in Python due to its ease of use and flexibility. It allows you to define quantities with units, perform arithmetic operations, and convert between different units seamlessly. It has a comprehensive set of predefined units and also allows you to define your own custom units if needed. Pint integrates well with NumPy, making it a great choice for scientific computing tasks. However, it doesn't have native support for Polars, so you may need to use helper functions to integrate it with Polars DataFrames.
+
+There's really an ecosystem of libraries built around Pint, such as `pint-pandas` for pandas integration and `pint-xarray` for xarray integration, which can be very useful if you're working with those libraries.
 
 Here's a simple example using the Pint library to demonstrate how to work with units and measurements in Python:
 
@@ -52,16 +71,18 @@ print(f"Speed in km/h: {speed_kmh}")
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 ```
 
 <!-- end-result -->
 
-## Quantities
+### Quantities
 
-Using Quantities is another option for handling units in Python, especially if you're working with NumPy arrays. It allows you to perform operations on arrays while keeping track of the associated units.
+Using Quantities is another option for handling units in Python, especially if you're working with NumPy arrays. It allows you to perform operations on arrays while keeping track of the associated units. It's probably one of the older libraries for handling units in Python and has been widely used in scientific computing.
+
+However, it doesn't have native support for Pandas, so you may need to use helper functions to integrate it with Pandas DataFrames.
 
 Here is an example of how to use Quantities:
 
@@ -81,7 +102,7 @@ print(f"Speed in km/h: {speed_kmh}")
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -90,9 +111,12 @@ Speed in km/h: 1.7999999999999998 km/h
 
 <!-- end-result -->
 
-## Astropy
+### Astropy
 
 Astropy is a powerful library for astronomy that includes support for units and quantities. It provides a comprehensive set of astronomical units and allows you to perform calculations with those units.
+
+However, Astropy is optimized for astronomical calculations, so it may not be the best choice for general-purpose unit handling. However, if you're working in the field of astronomy, it's an excellent choice due to its comprehensive unit support and integration with other astronomical libraries.
+
 Here's an example of how to use Astropy for unit handling:
 
 ```python
@@ -110,7 +134,7 @@ print(f"Speed in km/h: {speed_kmh}")
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -121,7 +145,7 @@ Speed in km/h: 1.7999999999999998 km / h
 
 <!-- end-result -->
 
-## Unyt
+### Unyt
 
 Unyt is a library focused on array-based unit handling with strong astrophysics support. It's designed to work seamlessly with NumPy arrays and provides efficient unit operations.
 
@@ -148,7 +172,7 @@ print(f"Array of speeds: {speeds}")
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -196,7 +220,7 @@ print(df)
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -303,7 +327,7 @@ benchmark_all()
 
 <!-- result -->
 
-```text
+```
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -343,7 +367,7 @@ Each of these libraries has its strengths:
 
 Choose the one that best fits your specific use case and requirements. For most general applications, Pint provides an excellent balance of features and ease of use, while specialized fields might benefit from the more targeted approaches of the other libraries.
 
-### References
+## References
 
 - [A Comprehensive Look at Representing Physical Quantities in Python" - SciPy 2013](https://pyvideo.org/scipy-2013/a-comprehensive-look-at-representing-physical-qua.html)
 

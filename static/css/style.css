@@ -328,3 +328,83 @@ body.dark article code:not(pre code) {
     background: #1a1a1a;
     border-color: #333;
 }
+
+/* Light mode code block improvements - override theme defaults */
+.light code table td {
+    color: #2d3748 !important; /* Dark text for light background */
+}
+
+/* Make code blocks darker in light mode */
+article pre {
+    background: #f7fafc !important;
+    border: 1px solid #e2e8f0;
+}
+
+/* Make inline code darker in light mode */
+article code:not(pre code) {
+    background: #f7fafc;
+    color: #2d3748;
+    border: 1px solid #e2e8f0;
+}
+
+/* Ensure syntax highlighting is visible in light mode */
+.light pre code {
+    color: #2d3748 !important;
+}
+
+/* Override any remaining light mode code styling */
+.light pre,
+.light code {
+    background: #f7fafc !important;
+    color: #2d3748 !important;
+}
+
+/* Compact Table of Contents styling */
+.toc-container {
+    margin: 1rem 0 2rem 0;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+}
+
+.toc-container[open] {
+    padding-bottom: 0.75rem;
+}
+
+.toc-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: var(--text) !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0.25rem 0;
+}
+
+.toc-list {
+    margin-left: 1rem !important;
+    font-weight: normal !important;
+    color: var(--text) !important;
+}
+
+.toc-list li {
+    margin: 0.25rem 0 !important;
+    line-height: 1.4;
+}
+
+.toc-list ul {
+    margin-left: 1rem !important;
+    margin-top: 0.25rem;
+    font-weight: normal !important;
+    color: var(--text) !important;
+}
+
+.toc-list a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.toc-list a:hover {
+    color: var(--primary);
+}

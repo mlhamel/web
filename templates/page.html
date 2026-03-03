@@ -16,6 +16,10 @@
         <time>{{ page.date | date(format="%B %e, %Y") }}</time>
         {% endif %}
 
+        {% if page.extra.toc | default(value=false) and page.toc %}
+          {% include "partials/toc.html" %}
+        {% endif %}
+
         {{ page.content | safe }}
     </article>
   </main>

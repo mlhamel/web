@@ -9,7 +9,9 @@ help:
 	@echo "  clean    - Remove the 'public' directory"
 	@echo "  setup    - Install Zola (Debian/Ubuntu)"
 	@echo "  post     - Create a new blog post (usage: make post SLUG=my-post-slug)"
-	@echo "  test     - Run all blog code block tests with pytest"
+	@echo "  run-md             - Run python code blocks from a markdown file (argument: MD=<path>)"
+	@echo "  sync-md            - Run python code blocks and inject results into markdown (argument: MD=<path>)"
+	@echo "  test               - Run all blog code block tests with pytest"
 	@echo "  prek-install       - Install prek (Rust pre-commit implementation)"
 	@echo "  prek-install-hooks - Install pre-commit hooks with prek"
 	@echo "  lint               - Run linters on all files"
@@ -45,6 +47,11 @@ uv-sync:
 run-md:
 	@if [ -z "$(MD)" ]; then echo "Usage: make run-md MD=path/to/file.md"; exit 1; fi
 	uv run --no-project scripts/run_md_blocks.py $(MD)
+
+# Sync results into a markdown file (argument: MD=<path>)
+sync-md:
+	@if [ -z "$(MD)" ]; then echo "Usage: make sync-md MD=path/to/file.md"; exit 1; fi
+	uv run --no-project scripts/sync_md.py $(MD)
 
 # Create a new blog post
 post:

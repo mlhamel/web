@@ -1,6 +1,6 @@
 +++
 title = "Why Data Matters for Sustainability"
-date = 2026-02-28
+date = 2026-03-12
 description = "Exploring how data engineering can drive environmental impact."
 [taxonomies]
 tags = ["sustainability", "data"]

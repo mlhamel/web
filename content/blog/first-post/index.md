@@ -53,7 +53,6 @@ print(f"Speed in km/h: {speed_kmh}")
 <!-- result -->
 
 ```text
-Installed 16 packages in 58ms
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 ```
@@ -83,7 +82,6 @@ print(f"Speed in km/h: {speed_kmh}")
 <!-- result -->
 
 ```text
-Installed 16 packages in 34ms
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -113,7 +111,6 @@ print(f"Speed in km/h: {speed_kmh}")
 <!-- result -->
 
 ```text
-Installed 16 packages in 29ms
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -152,7 +149,6 @@ print(f"Array of speeds: {speeds}")
 <!-- result -->
 
 ```text
-Installed 16 packages in 33ms
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -162,6 +158,65 @@ Speed in km/h: 1.7999999999999998 km / h
 Speed: 0.5 m/s
 Speed in km/h: 1.7999999999999998 km/hr
 Array of speeds: [2. 2. 2. 2. 2.] km/hr
+```
+
+<!-- end-result -->
+
+## Polars Integration
+
+Polars is a blazingly fast DataFrame library that focuses on high-performance Arrow-native data types. While it doesn't have native built-in support for units, you can easily integrate unit conversions using helper functions with `map_batches()`.
+
+```python
+import polars as pl
+import pint
+
+ureg = pint.UnitRegistry()
+
+def convert_units(from_unit: str, to_unit: str):
+    """Create a vectorized function to convert units using pint"""
+    def converter(s):
+        # Convert to NumPy for fast vectorized operations
+        vals = s.to_numpy() * ureg(from_unit)
+        return pl.Series(vals.to(to_unit).magnitude)
+    return converter
+
+# Usage
+df = pl.DataFrame({
+    "distance_km": [1.0, 2.5, 5.0, 10.0],
+    "time_hr": [0.5, 1.0, 1.5, 2.0]
+})
+
+df = df.with_columns(
+    distance_m = pl.col("distance_km").map_batches(convert_units("km", "m")),
+    speed_mps = (pl.col("distance_km") / pl.col("time_hr")).map_batches(convert_units("km/hr", "m/s"))
+)
+
+print(df)
+```
+
+<!-- result -->
+
+```text
+Speed: 0.5 meter / second
+Speed in km/h: 1.8 kilometer / hour
+Speed: 0.5 m/s
+Speed in km/h: 1.7999999999999998 km/h
+Speed: 0.5 m / s
+Speed in km/h: 1.7999999999999998 km / h
+Speed: 0.5 m/s
+Speed in km/h: 1.7999999999999998 km/hr
+Array of speeds: [2. 2. 2. 2. 2.] km/hr
+shape: (4, 4)
+┌─────────────┬─────────┬────────────┬───────────┐
+│ distance_km ┆ time_hr ┆ distance_m ┆ speed_mps │
+│ ---         ┆ ---     ┆ ---        ┆ ---       │
+│ f64         ┆ f64     ┆ f64        ┆ f64       │
+╞═════════════╪═════════╪════════════╪═══════════╡
+│ 1.0         ┆ 0.5     ┆ 1000.0     ┆ 0.555556  │
+│ 2.5         ┆ 1.0     ┆ 2500.0     ┆ 0.694444  │
+│ 5.0         ┆ 1.5     ┆ 5000.0     ┆ 0.925926  │
+│ 10.0        ┆ 2.0     ┆ 10000.0    ┆ 1.388889  │
+└─────────────┴─────────┴────────────┴───────────┘
 ```
 
 <!-- end-result -->
@@ -249,7 +304,6 @@ benchmark_all()
 <!-- result -->
 
 ```text
-Installed 16 packages in 33ms
 Speed: 0.5 meter / second
 Speed in km/h: 1.8 kilometer / hour
 Speed: 0.5 m/s
@@ -259,12 +313,21 @@ Speed in km/h: 1.7999999999999998 km / h
 Speed: 0.5 m/s
 Speed in km/h: 1.7999999999999998 km/hr
 Array of speeds: [2. 2. 2. 2. 2.] km/hr
-| Library    | Scalar (1000 iters)   | Array (1000 iters, size 1000)   |
-|------------|-----------------------|---------------------------------|
-| Pint       | 0.0757s               | 0.1168s                         |
-| Quantities | 0.2164s               | 0.2216s                         |
-| Astropy    | 0.0336s               | 0.0325s                         |
-| Unyt       | 0.0223s               | 0.0216s                         |
+shape: (4, 4)
+┌─────────────┬─────────┬────────────┬───────────┐
+│ distance_km ┆ time_hr ┆ distance_m ┆ speed_mps │
+│ ---         ┆ ---     ┆ ---        ┆ ---       │
+│ f64         ┆ f64     ┆ f64        ┆ f64       │
+╞═════════════╪═════════╪════════════╪═══════════╡
+│ 1.0         ┆ 0.5     ┆ 1000.0     ┆ 0.555556  │
+│ 2.5         ┆ 1.0     ┆ 2500.0     ┆ 0.694444  │
+│ 5.0         ┆ 1.5     ┆ 5000.0     ┆ 0.925926  │
+│ 10.0        ┆ 2.0     ┆ 10000.0    ┆ 1.388889  │
+└─────────────┴─────────┴────────────┴───────────┘
+Traceback (most recent call last):
+  File "/home/mlhamel/src/github.com/mlhamel/web/run_md_yarkho5r.py", line 89, in <module>
+    from tabulate import tabulate
+ModuleNotFoundError: No module named 'tabulate'
 ```
 
 <!-- end-result -->
@@ -279,3 +342,21 @@ Each of these libraries has its strengths:
 - **Unyt** provides highly optimized array operations with a focus on astrophysics.
 
 Choose the one that best fits your specific use case and requirements. For most general applications, Pint provides an excellent balance of features and ease of use, while specialized fields might benefit from the more targeted approaches of the other libraries.
+
+### References
+
+- [A Comprehensive Look at Representing Physical Quantities in Python" - SciPy 2013](https://pyvideo.org/scipy-2013/a-comprehensive-look-at-representing-physical-qua.html)
+
+<!--
+Dependencies:
+requires-python = ">=3.9"
+dependencies = [
+    "pint",
+    "quantities",
+    "astropy",
+    "unyt",
+    "numpy",
+    "tabulate",
+    "polars"
+]
+-->

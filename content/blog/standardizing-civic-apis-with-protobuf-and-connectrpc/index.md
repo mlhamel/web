@@ -161,7 +161,21 @@ codecs = google_protobuf_codecs()
 legisinfo_app = LegisinfoServiceASGIApplication(legisinfo_servicer, codecs=codecs)
 lobbycanada_app = LobbyCanadaServiceASGIApplication(lobbycanada_servicer, codecs=codecs)
 
-# 3. Mount in FastAPI
+# 3. Path-preserving ASGI wrapper for FastAPI mounting
+class ConnectASGIWrapper:
+    def __init__(self, connect_app):
+        self.connect_app = connect_app
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") == "http":
+            root = scope.get("root_path", "")
+            path = scope.get("path", "")
+            if root and not path.startswith(root):
+                scope["path"] = root + path
+                scope["root_path"] = ""
+        await self.connect_app(scope, receive, send)
+
+# 4. Mount in FastAPI
 app = FastAPI(title="CIVICAN API Server", version="0.1.0")
 app.mount(legisinfo_app.path, ConnectASGIWrapper(legisinfo_app))
 app.mount(lobbycanada_app.path, ConnectASGIWrapper(lobbycanada_app))
@@ -224,3 +238,15 @@ By pairing **Protobuf schemas** with **ConnectRPC**:
 - **AI & LLM Integration (MCP):** Structured Protobuf schemas allow direct projection into Model Context Protocol (MCP) servers (like `civican-mcp`), giving LLMs precise tool definitions to query civic data reliably without hallucinating API signatures.
 
 All schemas and server implementations are open source on GitHub at [github.com/civican](https://github.com/civican).
+
+<!--
+Dependencies:
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "connectrpc",
+    "duckdb",
+    "civican-schemas @ file:///home/mlhamel/src/github.com/civican/civican-schemas",
+    "civican-server @ file:///home/mlhamel/src/github.com/civican/civican-server"
+]
+-->

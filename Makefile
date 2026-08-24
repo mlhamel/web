@@ -2,21 +2,28 @@
 
 # Default target: show help
 help:
-	@echo "Available targets:"
-	@echo "  serve    - Start local development server with live reload"
-	@echo "  build    - Build the static site into the 'public' directory"
-	@echo "  check    - Check the site for broken links"
-	@echo "  clean    - Remove the 'public' directory"
-	@echo "  setup    - Install Zola (Debian/Ubuntu)"
-	@echo "  post     - Create a new blog post (usage: make post SLUG=my-post-slug)"
-	@echo "  run-md             - Run python code blocks from a markdown file (argument: MD=<path>)"
-	@echo "  sync-md            - Run python code blocks and inject results into markdown (argument: MD=<path>)"
+	@echo "\033[1m📖 Available Make Targets\033[0m\n"
+	@echo "\033[1;34m🌐 Site Management:\033[0m"
+	@echo "  serve              - Start local development server with live reload"
+	@echo "  build              - Build the static site into the 'public' directory"
+	@echo "  check              - Check the site for broken links"
+	@echo "  clean              - Remove the 'public' directory"
+	@echo ""
+	@echo "\033[1;32m✏️  Content Creation:\033[0m"
+	@echo "  post               - Create a new blog post (usage: make post SLUG=my-post-slug)"
+	@echo ""
+	@echo "\033[1;33m🐍 Python Development:\033[0m"
+	@echo "  run-md             - Run python code blocks from a markdown file (MD=<path>)"
+	@echo "  sync-md            - Run python code blocks and inject results into markdown (MD=<path>)"
 	@echo "  test               - Run all blog code block tests with pytest"
+	@echo ""
+	@echo "\033[1;35m🔧 Development Tools:\033[0m"
+	@echo "  setup              - Install Zola (Debian/Ubuntu)"
+	@echo "  dev-setup          - Complete development environment setup"
 	@echo "  prek-install       - Install prek (Rust pre-commit implementation)"
 	@echo "  prek-install-hooks - Install pre-commit hooks with prek"
 	@echo "  lint               - Run linters on all files"
 	@echo "  format             - Format code using ruff and prettier"
-	@echo "  dev-setup          - Complete development environment setup"
 
 # Start local development server
 serve:

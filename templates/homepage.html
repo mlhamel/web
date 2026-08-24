@@ -9,21 +9,68 @@
 
   <main>
     {% block main %}
-    <section class="latest-posts">
-      <h1>Mathieu Leduc-Hamel's Latest Writing</h1>
-      <div class="blog-list">
-        {% set blog_section = get_section(path="blog/_index.md") %}
-        {% for page in blog_section.pages | slice(end=10) %}
-          <div class="blog-preview">
-            <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
-            <time>{{ page.date | date(format="%B %e, %Y") }}</time>
-            <p>{{ page.summary | default(value=page.content | striptags | truncate(length=160)) | safe }}</p>
-          </div>
-        {% endfor %}
-      </div>
+    {% set blog_section = get_section(path="blog/_index.md") %}
+    {% if blog_section.pages | length > 0 %}
+      {% set latest = blog_section.pages | first %}
 
-      <p><a href="{{ get_url(path='blog') }}" class="view-all">View all posts →</a></p>
-    </section>
+      <!-- Latest Post (Full Article) -->
+      <article class="featured-post">
+        <header class="article-header">
+          <div class="featured-badge">Latest Post</div>
+          <h1><a href="{{ latest.permalink }}" class="featured-title-link">{{ latest.title }}</a></h1>
+          <div class="article-meta">
+            {% if latest.date %}
+            <time datetime="{{ latest.date }}">{{ latest.date | date(format="%B %e, %Y") }}</time>
+            {% endif %}
+            {% if latest.reading_time %}
+            <span>· {{ latest.reading_time }} min read</span>
+            {% endif %}
+          </div>
+          {% if latest.taxonomies.tags %}
+          <div class="tag-list">
+            {% for tag in latest.taxonomies.tags %}
+              <a href="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}" class="tag-badge">#{{ tag }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </header>
+
+        {% if latest.extra.toc | default(value=false) and latest.toc %}
+          {% include "partials/toc.html" %}
+        {% endif %}
+
+        <div class="article-content">
+          {{ latest.content | safe }}
+        </div>
+      </article>
+
+      <!-- Earlier Writing Archive (if more than 1 post) -->
+      {% if blog_section.pages | length > 1 %}
+      <section class="previous-posts">
+        <h2>Earlier Writing</h2>
+        <div class="blog-list">
+          {% for page in blog_section.pages | slice(start=1, end=6) %}
+            <div class="blog-preview">
+              <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+              <time datetime="{{ page.date }}">{{ page.date | date(format="%B %e, %Y") }}</time>
+              <p>{{ page.description | default(value=page.summary | default(value=page.content | striptags | truncate(length=140))) | safe }}</p>
+              {% if page.taxonomies.tags %}
+              <div class="tag-list">
+                {% for tag in page.taxonomies.tags %}
+                  <span class="tag-badge">#{{ tag }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <p><a href="{{ get_url(path='blog') }}" class="view-all">View all posts →</a></p>
+      </section>
+      {% endif %}
+
+    {% else %}
+      <p>No blog posts published yet.</p>
+    {% endif %}
     {% endblock main %}
   </main>
 

@@ -5,40 +5,56 @@ template = "page.html"
 
 ## 👋 Hi, I'm Mathieu Leduc-Hamel
 
-I'm a **Software Engineer** dedicated to building tools that bridge the gap between complex data and meaningful sustainability reporting. Currently, I lead the development of the calculation engine at **Metrio, a Nasdaq Company**, where our mission is to empower organizations with accurate environmental insights.
+I am a **Senior Director of Software Engineering** based in Montréal, specializing in high-throughput distributed data systems, platform engineering, and sustainability analytics.
 
-I'm passionate about **automation**, **open source**, and the potential of technology to drive positive change in the world.
+Currently, I lead the engineering teams powering the data transformation and calculation engine for **Nasdaq Metrio's** enterprise sustainability platform—orchestrating complex ESG metrics and analytics for global organizations.
 
-I lead a team of talented developers working on the calculation engine that powers Metrio's platform. Our goal is to help organizations measure and report their environmental impact accurately and efficiently.
+---
 
-Our stack primarily consists of **Python** and **Go**, leveraging the strengths of both languages to deliver high-performance applications. We utilize modern development practices, including CI/CD pipelines, automated testing, and containerization to ensure reliability and scalability.
+## 🛠️ What I Focus On
 
-We are using **Docker** for containerization, **Kubernetes** for orchestration, and various **Google Cloud** services to build a robust and scalable infrastructure.
+### Distributed Data Platforms & High-Throughput Systems
 
-### Engineering & Quality
+I design and scale reliable data architectures processing terabyte-scale datasets. From migrating computation pipelines to modern engines like **Polars**, **PySpark**, and **DuckDB**, to cloud infrastructure on **Google Cloud (GCP)** and **Kubernetes**, I focus on maximizing query performance while cutting compute latency and cloud infrastructure costs.
 
-I'm deeply interested in tooling around linters and static analysis to maintain high code quality. I'm also passionate about open source and contribute to various projects in my spare time.
+### Engineering Leadership & Scale
 
-### Data & Sustainability
+Previously, I spent six years at **Shopify**, where I led engineering teams building the **Shopify Email** marketing platform from inception to high-volume scale (supporting hundreds of thousands of active global merchants through peak Black Friday/Cyber Monday traffic), as well as core merchant infrastructure including automated SSL provisioning across millions of storefront domains.
 
-Data engineering and sustainability are two areas that deeply interest me. I believe that technology can play a crucial role in addressing environmental challenges, and I'm excited to be part of a team that is making a positive impact in this space.
+### Open Source & Civic Tech
 
-For processing large datasets, we utilize computing frameworks and cloud-based data storage solutions to handle the scale and complexity of sustainability data. Especially when dealing with ESG metrics, we ensure data integrity and accuracy through rigorous validation processes using different data processing pipelines and ETL tools. Both **Pandas** and **Polars** are heavily used in our data processing workflows.
+I am deeply committed to open source, developer productivity, and civic intelligence. Through the [Civican](https://github.com/civican) project, I work on standardizing open civic data APIs (such as Canadian federal legislation and lobbying records) using **Protocol Buffers**, **ConnectRPC**, and **FastAPI**.
 
-## 🚀 Skills & Tools
+---
 
-- **Languages:** Python, Go, Rust, Ruby
-- **Technologies:** Linux, Git, CI/CD, Docker, Kubernetes, Google Cloud
-- **Data Engineering:** Pandas, Polars, DuckDB, Agno, FastAPI, Apache Arrow
-- **Interests:** AI/ML Ops, Sustainability Tech, Developer Productivity
+## 🌐 Community & Leadership
+
+- **PyCon US:** Co-chaired PyCon US (2,000+ attendees, 200+ talks, 125+ sponsors), shaping conference operations and community initiatives.
+- **Montréal-Python:** Long-time president and organizer, fostering local developer communities and technical workshops.
+- **Open Source:** Active contributor to Python, Go, and Rust ecosystems.
+
+---
+
+## 🚀 Core Technologies
+
+- **Languages:** Python, Go, Rust, Ruby, SQL
+- **Data & Distributed Systems:** Polars, Pandas, DuckDB, PySpark, Apache Arrow, ConnectRPC / Protobuf
+- **Infrastructure & Cloud:** Google Cloud (GCP), Kubernetes, Docker, Terraform, CI/CD pipelines
+- **Architecture Focus:** Event-driven architectures, calculation engines, developer tooling, ESG reporting
+
+---
 
 ## 📄 Resumes / CV
 
-- 🇬🇧 **[Download Executive Resume (English PDF)](/resume-en.pdf)**
-- 🇫🇷 **[Télécharger le Curriculum Vitae (Français PDF)](/resume-fr.pdf)**
+<div class="btn-group">
+  <a href="/resume-en.pdf" class="btn-pill" target="_blank">🇬🇧 Download Executive Resume (PDF)</a>
+  <a href="/resume-fr.pdf" class="btn-pill" target="_blank">🇫🇷 Télécharger le Curriculum Vitae (PDF)</a>
+</div>
 
-## 📬 Contact
+---
+
+## 📬 Get in Touch
 
 - **GitHub:** [@mlhamel](https://github.com/mlhamel)
-- **LinkedIn:** [mlhamel](https://www.linkedin.com/in/mlhamel/)
+- **LinkedIn:** [linkedin.com/in/mlhamel](https://www.linkedin.com/in/mlhamel/)
 - **Email:** [marrakis@gmail.com](mailto:marrakis@gmail.com)

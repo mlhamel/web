@@ -18,23 +18,21 @@ import tempfile
 
 
 def parse_top_comment(text: str):
-    m = re.search(r"<!--\s*(.*?)\s*-->", text, re.S)
-    if not m:
-        return {}
-    body = m.group(1)
+    comments = re.findall(r"<!--\s*(.*?)\s*-->", text, re.S)
     result = {}
-    # find requires-python
-    m_req = re.search(r"requires-python\s*=\s*\"([^\"]+)\"", body)
-    if m_req:
-        result["requires-python"] = m_req.group(1)
-    # find dependencies list
-    m_deps = re.search(r"dependencies\s*=\s*(\[[^\]]*\])", body, re.S)
-    if m_deps:
-        try:
-            deps = ast.literal_eval(m_deps.group(1))
-            result["dependencies"] = deps
-        except Exception:
-            pass
+    for body in comments:
+        # find requires-python
+        m_req = re.search(r"requires-python\s*=\s*\"([^\"]+)\"", body)
+        if m_req:
+            result["requires-python"] = m_req.group(1)
+        # find dependencies list
+        m_deps = re.search(r"dependencies\s*=\s*(\[[^\]]*\])", body, re.S)
+        if m_deps:
+            try:
+                deps = ast.literal_eval(m_deps.group(1))
+                result["dependencies"] = deps
+            except Exception:
+                pass
     return result
 
 

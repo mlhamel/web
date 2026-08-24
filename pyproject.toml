@@ -11,6 +11,7 @@ dependencies = [
     "astropy",
     "unyt",
     "polars>=1.36.1",
+    "tabulate",
 ]
 
 [dependency-groups]

@@ -28,11 +28,11 @@ highlight_theme = "base16-ocean-dark"
 author = "Mathieu Leduc-Hamel"
 github = "https://github.com/mlhamel"
 
-# Radion theme configuration
 radion_menu = [
     {url = "$BASE_URL/", name = "Home"},
     {url = "$BASE_URL/about", name = "About"},
     {url = "$BASE_URL/blog", name = "Blog"},
+    {url = "$BASE_URL/resume.pdf", name = "Resume"},
 ]
 radion_title = "Mathieu Leduc-Hamel"
 

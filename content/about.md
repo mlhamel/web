@@ -32,6 +32,11 @@ For processing large datasets, we utilize computing frameworks and cloud-based d
 - **Data Engineering:** Pandas, Polars, DuckDB, Agno, FastAPI, Apache Arrow
 - **Interests:** AI/ML Ops, Sustainability Tech, Developer Productivity
 
+## 📄 Resumes / CV
+
+- 🇬🇧 **[Download Executive Resume (English PDF)](/resume-en.pdf)**
+- 🇫🇷 **[Télécharger le Curriculum Vitae (Français PDF)](/resume-fr.pdf)**
+
 ## 📬 Contact
 
 - **GitHub:** [@mlhamel](https://github.com/mlhamel)

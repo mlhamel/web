@@ -146,20 +146,18 @@ from civican.schemas.proto.legisinfo.v1.legisinfo_connect import LegisinfoServic
 from civican.schemas.proto.lobbycanada.v1.lobbycanada_connect import LobbyCanadaServiceASGIApplication
 from connectrpc.compat import google_protobuf_codecs
 from fastapi import FastAPI
-from civican.server.readers import LegisinfoReader, LobbyCanadaReader
-from civican.server.services import LegisinfoServiceImpl, LobbyCanadaServiceImpl
 
-# 1. Initialize Readers & Service Implementations
-legisinfo_reader = LegisinfoReader()
-legisinfo_servicer = LegisinfoServiceImpl(legisinfo_reader)
+# 1. Initialize Service Implementations
+class LegisinfoServiceImpl:
+    """Implements LegisinfoService generated RPC handlers."""
 
-lobbycanada_reader = LobbyCanadaReader()
-lobbycanada_servicer = LobbyCanadaServiceImpl(lobbycanada_reader)
+class LobbyCanadaServiceImpl:
+    """Implements LobbyCanadaService generated RPC handlers."""
 
 # 2. Wrap with ConnectRPC ASGI Applications
 codecs = google_protobuf_codecs()
-legisinfo_app = LegisinfoServiceASGIApplication(legisinfo_servicer, codecs=codecs)
-lobbycanada_app = LobbyCanadaServiceASGIApplication(lobbycanada_servicer, codecs=codecs)
+legisinfo_app = LegisinfoServiceASGIApplication(LegisinfoServiceImpl(), codecs=codecs)
+lobbycanada_app = LobbyCanadaServiceASGIApplication(LobbyCanadaServiceImpl(), codecs=codecs)
 
 # 3. Path-preserving ASGI wrapper for FastAPI mounting
 class ConnectASGIWrapper:
@@ -246,7 +244,6 @@ dependencies = [
     "fastapi",
     "connectrpc",
     "duckdb",
-    "civican-schemas @ file:///home/mlhamel/src/github.com/civican/civican-schemas",
-    "civican-server @ file:///home/mlhamel/src/github.com/civican/civican-server"
+    "civican-schemas @ git+https://github.com/civican/civican-schemas.git"
 ]
 -->

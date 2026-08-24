@@ -169,7 +169,49 @@ app.mount(lobbycanada_app.path, ConnectASGIWrapper(lobbycanada_app))
 
 ### Dynamic Service Activation
 
-Civic datasets vary by deployment (e.g. a small local instance might only index bills, while a production server indexes both bills and lobbying databases). `civican-server` checks environment variables and local dataset availability (`is_legisinfo_active()`, `is_lobbycanada_active()`) to dynamically mount only available services, exposing health and capability statuses at `/health` and `/`.
+Civic datasets vary by deployment: a scraper repo may only contain lobbying data, a parliamentary repo may only contain bill JSONs, while a production unified portal contains both. `civican-server` inspects environment variables and dataset paths (`is_legisinfo_active()`, `is_lobbycanada_active()`) to dynamically mount only available services, exposing health and service discovery at `/health` and `/`.
+
+---
+
+## Data Repositories as Consumers: Ephemeral APIs with `uv` and Make
+
+A central architectural goal was keeping data repositories like [`civican/lobbycanada`](https://github.com/civican/lobbycanada) and [`civican/legisinfo`](https://github.com/civican/legisinfo) strictly focused on data artifacts (DuckDB databases, scraped records, automated sync jobs) with **zero duplicated server boilerplate**.
+
+Instead of writing a custom API server inside each data repo, the repositories declare `civican-server` and `civican-schemas` as **dynamic dependencies** executed on-the-fly.
+
+In `lobbycanada/Makefile`, running the entire ConnectRPC API server is a single target:
+
+```makefile
+# Source definitions can point to sibling local directories or remote Git repos
+CIVICAN_SERVER_SOURCE  ?= ../civican-server
+CIVICAN_SCHEMAS_SOURCE ?= ../civican-schemas
+PORT                   ?= 8001
+
+run:
+	LOBBYCANADA_DB_PATH=$$(pwd)/lobbycanada.duckdb uv run \
+		--with duckdb \
+		--with "civican-schemas @ file://$$(realpath $(CIVICAN_SCHEMAS_SOURCE))" \
+		--with "civican-server @ file://$$(realpath $(CIVICAN_SERVER_SOURCE))" \
+		-- uvicorn civican.server.main:app --host 0.0.0.0 --port $(PORT)
+```
+
+For remote consumers who don't have local checkouts of the server repo, `uv run` fetches the server package directly from Git:
+
+```bash
+LOBBYCANADA_DB_PATH=./lobbycanada.duckdb uv run \
+  --with "civican-server @ git+https://github.com/civican/civican-server.git" \
+  -- uvicorn civican.server.main:app --port 8001
+```
+
+### Why This Workflow Is Powerful
+
+1. **One-Command Local Experience:** A contributor or data journalist can clone `lobbycanada`, download the latest pre-built DuckDB database, and immediately spin up a local API:
+   ```bash
+   make download   # Fetches latest compressed DuckDB release
+   make run        # Ephemerally pulls civican-server and serves ConnectRPC API
+   ```
+2. **Zero Global Environment Pollution:** Using `uv run --with ...` spins up an ephemeral environment, boots Uvicorn, and cleans up automatically—without requiring `pip install` or managing virtual environments.
+3. **Container Parity:** The same pattern is containerized via `make docker-run`, mounting local database files into the standard `civican-server` container for production Kubernetes or Fly.io deployments.
 
 ---
 
